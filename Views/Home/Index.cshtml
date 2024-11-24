@@ -1,0 +1,32 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table table-bordered table-striped"> 
+    <thead>
+        <tr>
+            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.First().ProductId) </th>
+            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.First().Image) </th>
+            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.First().Name) </th>
+            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.First().Price) </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var prd in @Model)
+        {
+            <tr>
+                <td>@prd.ProductId</td>
+                <td>
+                    <img src="~/img/@prd.Image"a class="img-fluid" style="width: 150px; height: 150px; object-fit: cover;" alt="">
+                </td>
+                <td>@prd.Name</td>
+                <td>@prd.Price</td>
+                <td>
+                    <a href="" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
