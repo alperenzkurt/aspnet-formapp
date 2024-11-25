@@ -1,19 +1,36 @@
-﻿@model List<Product>
+﻿@model ProductViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
+<div class="card card-body my-3">
+    <form asp-action="Index" method="get">
+        <div class="row">
+            <div class="col-md-11">
+                <select 
+                class="form-select" 
+                asp-items="@(new SelectList(Model.Categories, "CategoryId", "Name", Model.SelectedCategory))" 
+                name="category">
+                    <option value="0">Hepsi</option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary">Filtrele</button>
+            </div>
+        </div>
+    </form>
+</div>
 
 <table class="table table-bordered table-striped"> 
     <thead>
         <tr>
-            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.First().ProductId) </th>
-            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.First().Image) </th>
-            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.First().Name) </th>
-            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.First().Price) </th>
+            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.Products[0].ProductId) </th>
+            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.Products[0].Image) </th>
+            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.Products[0].Name) </th>
+            <th style="width:auto 100px;">@Html.DisplayNameFor(x => x.Products[0].Price) </th>
         </tr>
     </thead>
     <tbody>
-        @foreach(var prd in @Model)
+        @foreach(var prd in @Model.Products)
         {
             <tr>
                 <td>@prd.ProductId</td>
