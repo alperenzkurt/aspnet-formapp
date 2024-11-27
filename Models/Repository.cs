@@ -60,5 +60,16 @@ namespace aspnet_formapp.Models
                 _products.Remove(entity);
             }
         }
+        
+
+        public static void EditIsActive(Product updatedProduct)
+        {
+            var entity = _products.FirstOrDefault(p => p.ProductId == updatedProduct.ProductId);
+
+            if (entity != null)
+            {
+                entity.IsActive = updatedProduct.IsActive;
+            }
+        }
     }
 }
